@@ -2,9 +2,13 @@ package it.relatech.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Veicolo {
@@ -31,6 +35,8 @@ public class Veicolo {
 	
 	private LocalDate fineNoleggio;
 	
+	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@JoinColumn(name="cliente")
 	private Cliente cliente;
 	
 	private double costoNoleggio;

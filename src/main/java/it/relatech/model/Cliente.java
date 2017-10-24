@@ -3,6 +3,7 @@ package it.relatech.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cliente {
@@ -15,6 +16,7 @@ public class Cliente {
 	
 	private String cognome;
 	
+	@OneToOne(mappedBy = "cognome")
 	private Veicolo veicolo;
 
 	public int getId() {
