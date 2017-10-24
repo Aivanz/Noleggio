@@ -1,6 +1,6 @@
 package it.relatech.model;
 
-import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,7 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Veicolo {
@@ -29,17 +30,22 @@ public class Veicolo {
 	
 	private Colore colore;
 	
-	private boolean disponibile;
+	@OneToMany(mappedby="veicolo")
+	private List<Noleggio> listNoleggio;
+
 	
-	private LocalDate inizioNoleggio;
-	
-	private LocalDate fineNoleggio;
-	
-	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumn(name="cliente")
-	private Cliente cliente;
-	
-	private double costoNoleggio;
+	public Veicolo(int id, String marca, String modello, String targa, Alimentazione alimentazione, Categoria categoria,
+			Colore colore, List<Noleggio> listNoleggio) {
+		super();
+		this.id = id;
+		this.marca = marca;
+		this.modello = modello;
+		this.targa = targa;
+		this.alimentazione = alimentazione;
+		this.categoria = categoria;
+		this.colore = colore;
+		this.listNoleggio = listNoleggio;
+	}
 
 	public int getId() {
 		return id;
@@ -97,51 +103,19 @@ public class Veicolo {
 		this.colore = colore;
 	}
 
-	public boolean isDisponibile() {
-		return disponibile;
+	public List<Noleggio> getListNoleggio() {
+		return listNoleggio;
 	}
 
-	public void setDisponibile(boolean disponibile) {
-		this.disponibile = disponibile;
-	}
-
-	public LocalDate getInizioNoleggio() {
-		return inizioNoleggio;
-	}
-
-	public void setInizioNoleggio(LocalDate inizioNoleggio) {
-		this.inizioNoleggio = inizioNoleggio;
-	}
-
-	public LocalDate getFineNoleggio() {
-		return fineNoleggio;
-	}
-
-	public void setFineNoleggio(LocalDate fineNoleggio) {
-		this.fineNoleggio = fineNoleggio;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public double getCostoNoleggio() {
-		return costoNoleggio;
-	}
-
-	public void setCostoNoleggio(double costoNoleggio) {
-		this.costoNoleggio = costoNoleggio;
+	public void setListNoleggio(List<Noleggio> listNoleggio) {
+		this.listNoleggio = listNoleggio;
 	}
 
 	@Override
 	public String toString() {
-		return "Veicolo [id=" + id + ", marca=" + marca + ", modello=" + modello + ", targa=" + targa + ", categoria="
-				+ categoria + ", disponibile=" + disponibile + ", inizioNoleggio=" + inizioNoleggio + ", fineNoleggio="
-				+ fineNoleggio + ", costoNoleggio=" + costoNoleggio + "]";
-	}	
-	
+		return "Veicolo [id=" + id + ", marca=" + marca + ", modello=" + modello + ", targa=" + targa
+				+ ", alimentazione=" + alimentazione + ", categoria=" + categoria + ", colore=" + colore
+				+ ", listNoleggio=" + listNoleggio + "]";
+	}
+
 }

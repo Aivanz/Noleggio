@@ -1,9 +1,11 @@
 package it.relatech.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cliente {
@@ -15,9 +17,18 @@ public class Cliente {
 	private String nome;
 	
 	private String cognome;
+
+	@OneToMany(mappedBy = "cliente")
+	private List<Noleggio> listNoleggio;
+
 	
-	@OneToOne(mappedBy = "cognome")
-	private Veicolo veicolo;
+	public Cliente(int id, String nome, String cognome, List<Noleggio> listNoleggio) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.listNoleggio = listNoleggio;
+	}
 
 	public int getId() {
 		return id;
@@ -43,17 +54,19 @@ public class Cliente {
 		this.cognome = cognome;
 	}
 
-	public Veicolo getVeicolo() {
-		return veicolo;
+	public List<Noleggio> getListNoleggio() {
+		return listNoleggio;
 	}
 
-	public void setVeicolo(Veicolo veicolo) {
-		this.veicolo = veicolo;
+	public void setListNoleggio(List<Noleggio> listNoleggio) {
+		this.listNoleggio = listNoleggio;
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", veicolo=" + veicolo + "]";
+		return "Cliente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", listNoleggio=" + listNoleggio + "]";
 	}
+
+	
 	
 }
