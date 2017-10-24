@@ -10,11 +10,11 @@ import it.relatech.model.Categoria;
 import it.relatech.model.Veicolo;
 
 @Service
-public class VeicoloServiceImpl implements VeicoloService{
-	
+public class VeicoloServiceImpl implements VeicoloService {
+
 	@Autowired
 	private VeicoloDao veicoloDao;
-	
+
 	@Override
 	public Veicolo saveVeicolo(Veicolo veicolo) {
 		return veicoloDao.saveVeicolo(veicolo);
@@ -26,7 +26,7 @@ public class VeicoloServiceImpl implements VeicoloService{
 	}
 
 	@Override
-	public Veicolo deleteVeicolo(Veicolo veicolo) {
+	public void deleteVeicolo(Veicolo veicolo) {
 		veicoloDao.deleteVeicolo(veicolo);
 	}
 

@@ -21,19 +21,19 @@ import it.relatech.services.ClienteService;
 @RestController
 @RequestMapping("/cliente")
 public class ClienteController {
-	
+
 	private final Logger logger = Logger.getLogger(ClienteController.class.getName());
-	
+
 	@Autowired
 	private ClienteService clienteService;
-	
+
 	@GetMapping("/getModel")
 	public Cliente getClienteModel() {
 		return new Cliente();
 	}
-	
+
 	@PostMapping("/add")
-	public ResponseEntity<Cliente> addCliente(@RequestBody Cliente cliente){
+	public ResponseEntity<Cliente> addCliente(@RequestBody Cliente cliente) {
 		try {
 			Cliente savedCliente = clienteService.saveCliente(cliente);
 			logger.info("Cliente aggiunto: \n" + savedCliente);
@@ -43,9 +43,9 @@ public class ClienteController {
 			return new ResponseEntity<Cliente>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@PutMapping("/update")
-	public ResponseEntity<Cliente> updateCliente(@RequestBody Cliente cliente){
+	public ResponseEntity<Cliente> updateCliente(@RequestBody Cliente cliente) {
 		try {
 			Cliente savedCliente = clienteService.updateCliente(cliente);
 			logger.info("Cliente aggiornato: \n" + savedCliente);
@@ -55,11 +55,11 @@ public class ClienteController {
 			return new ResponseEntity<Cliente>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@DeleteMapping("/delete")
-	public ResponseEntity<Cliente> deleteCliente(@RequestBody Cliente cliente){
+	public ResponseEntity<Cliente> deleteCliente(@RequestBody Cliente cliente) {
 		try {
-			Cliente savedCliente = clienteService.deleteClienteById(cliente);
+			Cliente savedCliente = clienteService.deleteCliente(cliente);
 			logger.info("Cliente eliminato: \n" + savedCliente);
 			return new ResponseEntity<Cliente>(HttpStatus.OK);
 		} catch (Exception e) {
@@ -67,9 +67,9 @@ public class ClienteController {
 			return new ResponseEntity<Cliente>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@GetMapping("/getList")
-	public ResponseEntity<List<Cliente>> getListCliente(){
+	public ResponseEntity<List<Cliente>> getListCliente() {
 		try {
 			List<Cliente> listCliente = clienteService.getListCliente();
 			logger.info("Cliente aggiornato: \n" + listCliente);
@@ -79,40 +79,5 @@ public class ClienteController {
 			return new ResponseEntity<List<Cliente>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
