@@ -2,8 +2,13 @@ package it.relatech.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import it.relatech.model.Noleggio;
 
+@Repository
+@Transactional
 public class NoleggioDaoImpl extends AbstractDao implements NoleggioDao {
 
 	@Override

@@ -21,7 +21,6 @@ import it.relatech.model.Veicolo;
 import it.relatech.services.ClienteService;
 import it.relatech.services.VeicoloService;
 
-//
 @RestController
 @RequestMapping("/veicolo")
 public class VeicoloController {
@@ -30,9 +29,6 @@ public class VeicoloController {
 
 	@Autowired
 	private VeicoloService veicoloService;
-
-	@Autowired
-	private ClienteService clienteService;
 
 	@GetMapping("/getModel")
 	public Veicolo getVeicoloModel() {

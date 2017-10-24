@@ -10,19 +10,18 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Cliente {
-	
+
 	@Id
 	@GeneratedValue
 	private int id;
-	
+
 	private String nome;
-	
+
 	private String cognome;
 
 	@OneToMany(mappedBy = "cliente")
 	private List<Noleggio> listNoleggio;
 
-	
 	public Cliente() {
 		listNoleggio = new ArrayList<>();
 	}
@@ -64,6 +63,4 @@ public class Cliente {
 		return "Cliente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", listNoleggio=" + listNoleggio + "]";
 	}
 
-	
-	
 }

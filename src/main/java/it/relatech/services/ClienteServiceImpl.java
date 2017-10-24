@@ -9,8 +9,8 @@ import it.relatech.dao.ClienteDao;
 import it.relatech.model.Cliente;
 
 @Service
-public class ClienteServiceImpl implements ClienteService{
-	
+public class ClienteServiceImpl implements ClienteService {
+
 	@Autowired
 	private ClienteDao clienteDao;
 
@@ -25,15 +25,14 @@ public class ClienteServiceImpl implements ClienteService{
 	}
 
 	@Override
-	public Cliente deleteCliente(Cliente cliente) {
+	public void deleteCliente(Cliente cliente) {
 		clienteDao.deleteCliente(cliente);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cliente> getListCliente() {
-		return clienteDao.getListCliente();
+		return clienteDao.getListClienti();
 	}
-	
-	
+
 }

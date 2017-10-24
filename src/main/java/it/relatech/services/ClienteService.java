@@ -7,10 +7,10 @@ import it.relatech.model.Cliente;
 public interface ClienteService {
 
 	Cliente saveCliente(Cliente cliente);
-	
+
 	Cliente updateCliente(Cliente cliente);
-	
-	Cliente deleteCliente(Cliente cliente);
-	
+
+	void deleteCliente(Cliente cliente);
+
 	List<Cliente> getListCliente();
 }

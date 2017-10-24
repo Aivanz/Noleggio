@@ -59,8 +59,8 @@ public class ClienteController {
 	@DeleteMapping("/delete")
 	public ResponseEntity<Cliente> deleteCliente(@RequestBody Cliente cliente) {
 		try {
-			Cliente savedCliente = clienteService.deleteCliente(cliente);
-			logger.info("Cliente eliminato: \n" + savedCliente);
+			clienteService.deleteCliente(cliente);
+			logger.info("Cliente eliminato: \n" + cliente);
 			return new ResponseEntity<Cliente>(HttpStatus.OK);
 		} catch (Exception e) {
 			logger.info("Errore: " + e);

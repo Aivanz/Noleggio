@@ -32,7 +32,7 @@ public class VeicoloServiceImpl implements VeicoloService {
 
 	@Override
 	public List<Veicolo> getListVeicolo() {
-		return veicoloDao.getListVeicolo();
+		return veicoloDao.getListVeicoli();
 	}
 
 	@Override

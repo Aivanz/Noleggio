@@ -3,8 +3,10 @@ package it.relatech.model;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -13,23 +15,24 @@ public class Noleggio {
 	@Id
 	@GeneratedValue
 	private int id;
-	
+
 	private LocalDate inizioNoleggio;
-	
+
 	private LocalDate fineNoleggio;
-	
+
 	private double costoNoleggio;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CLIENTE_ID")
 	private Cliente cliente;
-	
-	@ManyToOne
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "VEICOLO_ID")
 	private Veicolo veicolo;
 
-	
 	public Noleggio() {
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -84,6 +87,4 @@ public class Noleggio {
 				+ ", costoNoleggio=" + costoNoleggio + ", cliente=" + cliente + ", veicolo=" + veicolo + "]";
 	}
 
-	
-	
 }
