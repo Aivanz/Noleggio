@@ -1,25 +1,24 @@
 package it.relatech.dao;
+
 import java.util.List;
 
-
+import it.relatech.model.Categoria;
 import it.relatech.model.Veicolo;
 
 public interface VeicoloDao {
-	
-Veicolo saveVeicolo(Veicolo v);
 
-Veicolo updateVeicolo(Veicolo v);
+	Veicolo saveVeicolo(Veicolo v);
 
+	Veicolo updateVeicolo(Veicolo v);
 
-void deleteVeicoloById(int id);
+	List<Veicolo> getListVeicolo();
 
-List<Veicolo> getListVeicoli();
+	void deleteVeicolo(Veicolo veicolo);
 
-Veicolo getVeicoloById(int id);
+	List<Veicolo> getListVeicoli();
 
-Veicolo noleggia (Veicolo v);
+	Veicolo getVeicoloById(int id);
 
-Veicolo restituisci (Veicolo v);
-
+	List<Veicolo> getListByCategoria(Categoria categoria);
 
 }

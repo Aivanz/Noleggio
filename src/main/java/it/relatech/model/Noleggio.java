@@ -27,15 +27,7 @@ public class Noleggio {
 	private Veicolo veicolo;
 
 	
-	public Noleggio(int id, LocalDate inizioNoleggio, LocalDate fineNoleggio, double costoNoleggio, Cliente cliente,
-			Veicolo veicolo) {
-		super();
-		this.id = id;
-		this.inizioNoleggio = inizioNoleggio;
-		this.fineNoleggio = fineNoleggio;
-		this.costoNoleggio = costoNoleggio;
-		this.cliente = cliente;
-		this.veicolo = veicolo;
+	public Noleggio() {
 	}
 	
 	public int getId() {
