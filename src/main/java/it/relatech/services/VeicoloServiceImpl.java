@@ -3,6 +3,7 @@ package it.relatech.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import it.relatech.dao.VeicoloDao;
 import it.relatech.model.Categoria;
@@ -41,7 +42,7 @@ public class VeicoloServiceImpl implements VeicoloService{
 
 	@Override
 	public List<Veicolo> getListByCategoria(Categoria categoria) {
-		return veicoloDao.getListByCategoria();
+		return veicoloDao.getListByCategoria(categoria);
 	}
 
 }
