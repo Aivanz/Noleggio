@@ -1,9 +1,12 @@
 package it.relatech.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,27 +27,21 @@ public class Veicolo {
 	
 	private String targa;
 	
+	@Enumerated(EnumType.ORDINAL)
 	private Alimentazione alimentazione;
 	
+	@Enumerated(EnumType.ORDINAL)
 	private Categoria categoria;
 	
+	@Enumerated(EnumType.ORDINAL)
 	private Colore colore;
 	
-	@OneToMany(mappedby="veicolo")
+	@OneToMany(mappedBy="veicolo")
 	private List<Noleggio> listNoleggio;
 
 	
-	public Veicolo(int id, String marca, String modello, String targa, Alimentazione alimentazione, Categoria categoria,
-			Colore colore, List<Noleggio> listNoleggio) {
-		super();
-		this.id = id;
-		this.marca = marca;
-		this.modello = modello;
-		this.targa = targa;
-		this.alimentazione = alimentazione;
-		this.categoria = categoria;
-		this.colore = colore;
-		this.listNoleggio = listNoleggio;
+	public Veicolo() {
+		listNoleggio = new ArrayList<>();
 	}
 
 	public int getId() {

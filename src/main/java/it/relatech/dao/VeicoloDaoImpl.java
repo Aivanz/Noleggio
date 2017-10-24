@@ -3,6 +3,7 @@ package it.relatech.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,17 +37,18 @@ public class VeicoloDaoImpl extends AbstractDao implements VeicoloDao {
 	@Override
 	public Veicolo updateVeicolo(Veicolo v) {
 		update(v);
-		return null;
+		return v;
 	}
 
 	@Override
-	public void deleteVeicoloById(int id) {
-		delete(getVeicoloById(id));
+	public void deleteVeicolo(Veicolo veicolo) {
+		delete(veicolo);
 	}
 
 	@Override
 	public List<Veicolo> getListByCategoria(Categoria categoria) {
-		return getSession().createCriteria(Veicolo.class).add(Restrictions.eq("categoria", categoria)).list();
+		return (List<Veicolo>) getSession().createCriteria(Veicolo.class).add(Restrictions.eq("categoria", categoria))
+				.list();
 	}
 
 }
