@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import it.relatech.model.Veicolo;
+
 public abstract class AbstractDao {
 
 	@Autowired
@@ -24,5 +26,7 @@ public abstract class AbstractDao {
 	public void update(Object obj) {
 		getSession().update(obj);
 	}
+
+	
 
 }
