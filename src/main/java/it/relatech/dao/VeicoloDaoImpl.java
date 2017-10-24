@@ -32,7 +32,7 @@ public  class VeicoloDaoImpl extends AbstractDao implements VeicoloDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Veicolo> getListVeicoli() {
+	public List<Veicolo> getListVeicolo() {
 		return getSession().createCriteria(Veicolo.class).list();
 	}
 
@@ -43,8 +43,8 @@ public  class VeicoloDaoImpl extends AbstractDao implements VeicoloDao {
 	}
 	
 	@Override
-	public void deleteVeicoloById(int id) {
-		delete(getVeicoloById(id));
+	public void deleteVeicolo(int id) {
+		delete(getVeicolo(id));
 	}
 
 	@Override

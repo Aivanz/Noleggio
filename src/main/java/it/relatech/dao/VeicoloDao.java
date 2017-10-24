@@ -11,9 +11,9 @@ Veicolo saveVeicolo(Veicolo v);
 Veicolo updateVeicolo(Veicolo v);
 
 
-void deleteVeicoloById(int id);
+Veicolo deleteVeicolo(Veicolo v);
 
-List<Veicolo> getListVeicoli();
+List<Veicolo> getListVeicolo();
 
 Veicolo getVeicoloById(int id);
 
