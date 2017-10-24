@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.relatech.model.Cliente;
 import it.relatech.model.Veicolo;
+import it.relatech.services.ClienteService;
 
 @RestController
 @RequestMapping("/cliente")
@@ -34,7 +35,7 @@ public class ClienteController {
 	@PostMapping("/add")
 	public ResponseEntity<Cliente> addCliente(@RequestBody Cliente cliente){
 		try {
-			Cliente savedCliente = clienteService.addCliente(cliente);
+			Cliente savedCliente = clienteService.saveCliente(cliente);
 			logger.info("Cliente aggiunto: \n" + savedCliente);
 			return new ResponseEntity<Cliente>(savedCliente, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -58,7 +59,7 @@ public class ClienteController {
 	@DeleteMapping("/delete")
 	public ResponseEntity<Cliente> deleteCliente(@RequestBody Cliente cliente){
 		try {
-			Cliente savedCliente = clienteService.deleteCliente(cliente);
+			Cliente savedCliente = clienteService.deleteClienteById(cliente);
 			logger.info("Cliente eliminato: \n" + savedCliente);
 			return new ResponseEntity<Cliente>(HttpStatus.OK);
 		} catch (Exception e) {

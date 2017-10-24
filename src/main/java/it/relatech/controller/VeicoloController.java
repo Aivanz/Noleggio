@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.relatech.model.Veicolo;
+import it.relatech.services.ClienteService;
+import it.relatech.services.VeicoloService;
 
 @RestController
 @RequestMapping("/veicolo")

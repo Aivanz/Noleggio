@@ -30,7 +30,7 @@ public class Veicolo {
 	
 	private Colore colore;
 	
-	@OneToMany(mappedby="veicolo")
+	@OneToMany(mappedBy="veicolo")
 	private List<Noleggio> listNoleggio;
 
 	

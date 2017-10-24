@@ -1,5 +1,6 @@
 package it.relatech.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,12 +23,8 @@ public class Cliente {
 	private List<Noleggio> listNoleggio;
 
 	
-	public Cliente(int id, String nome, String cognome, List<Noleggio> listNoleggio) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.cognome = cognome;
-		this.listNoleggio = listNoleggio;
+	public Cliente() {
+		listNoleggio = new ArrayList<>();
 	}
 
 	public int getId() {
