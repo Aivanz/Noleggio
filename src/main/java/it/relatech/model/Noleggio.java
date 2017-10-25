@@ -2,6 +2,7 @@ package it.relatech.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,11 +23,11 @@ public class Noleggio {
 
 	private double costoNoleggio;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
 	@JoinColumn(name = "CLIENTE_ID")
 	private Cliente cliente;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
 	@JoinColumn(name = "VEICOLO_ID")
 	private Veicolo veicolo;
 
@@ -79,6 +80,54 @@ public class Noleggio {
 
 	public void setVeicolo(Veicolo veicolo) {
 		this.veicolo = veicolo;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(costoNoleggio);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((fineNoleggio == null) ? 0 : fineNoleggio.hashCode());
+		result = prime * result + ((inizioNoleggio == null) ? 0 : inizioNoleggio.hashCode());
+		result = prime * result + ((veicolo == null) ? 0 : veicolo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Noleggio other = (Noleggio) obj;
+		if (cliente == null) {
+			if (other.cliente != null)
+				return false;
+		} else if (!cliente.equals(other.cliente))
+			return false;
+		if (Double.doubleToLongBits(costoNoleggio) != Double.doubleToLongBits(other.costoNoleggio))
+			return false;
+		if (fineNoleggio == null) {
+			if (other.fineNoleggio != null)
+				return false;
+		} else if (!fineNoleggio.equals(other.fineNoleggio))
+			return false;
+		if (inizioNoleggio == null) {
+			if (other.inizioNoleggio != null)
+				return false;
+		} else if (!inizioNoleggio.equals(other.inizioNoleggio))
+			return false;
+		if (veicolo == null) {
+			if (other.veicolo != null)
+				return false;
+		} else if (!veicolo.equals(other.veicolo))
+			return false;
+		return true;
 	}
 
 	@Override

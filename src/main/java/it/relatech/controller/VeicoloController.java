@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.relatech.model.Categoria;
 import it.relatech.model.Veicolo;
-import it.relatech.services.ClienteService;
 import it.relatech.services.VeicoloService;
 
 @RestController
@@ -79,8 +78,11 @@ public class VeicoloController {
 				logger.info("Lista veicoli vuota");
 				return new ResponseEntity<List<Veicolo>>(HttpStatus.OK);
 			}
-			logger.info("Lista veicoli: \n" + listVeicolo);
-			return new ResponseEntity<List<Veicolo>>(listVeicolo, HttpStatus.OK);
+			logger.info("Lista veicoli:");
+			for (Veicolo veicolo : listVeicolo) {
+				logger.info(veicolo.toString());
+			}
+			return new ResponseEntity<List<Veicolo>>(HttpStatus.OK);
 		} catch (Exception e) {
 			logger.info("Errore: " + e);
 			return new ResponseEntity<List<Veicolo>>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -92,10 +94,11 @@ public class VeicoloController {
 		try {
 			Veicolo savedVeicolo = veicoloService.getVeicoloById(id);
 			if (savedVeicolo == null) {
-				logger.info("");
+				logger.info("Nessun veicolo trovato con quell'ID");
+			} else {
+				logger.info("Veicolo cercato per id: \n" + savedVeicolo);
 			}
-			logger.info("Veicolo cercato per id: \n" + savedVeicolo);
-			return new ResponseEntity<Veicolo>(savedVeicolo, HttpStatus.OK);
+			return new ResponseEntity<Veicolo>(HttpStatus.OK);
 		} catch (Exception e) {
 			logger.info("Errore: " + e);
 			return new ResponseEntity<Veicolo>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -106,7 +109,14 @@ public class VeicoloController {
 	public ResponseEntity<List<Veicolo>> getListByCategoria(@RequestHeader Categoria categoria) {
 		try {
 			List<Veicolo> listVeicolo = veicoloService.getListByCategoria(categoria);
-			logger.info("Lista veicoli per categoria: \n" + listVeicolo);
+			if (listVeicolo.isEmpty()) {
+				logger.info("Lista veicoli per categoria vuota");
+				return new ResponseEntity<List<Veicolo>>(HttpStatus.OK);
+			}
+			logger.info("Lista veicoli per categoria " + categoria + " :");
+			for (Veicolo veicolo : listVeicolo) {
+				logger.info(veicolo.toString());
+			}
 			return new ResponseEntity<List<Veicolo>>(HttpStatus.OK);
 		} catch (Exception e) {
 			logger.info("Errore: " + e);

@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.relatech.model.Cliente;
 import it.relatech.model.Noleggio;
 import it.relatech.model.Veicolo;
-import it.relatech.services.ClienteService;
 import it.relatech.services.NoleggioService;
 
 @RestController
@@ -50,7 +47,7 @@ public class NoleggioController {
 		try {
 			noleggioService.deleteNoleggio(noleggio);
 			logger.info(" restituito: \n" + noleggio);
-			return new ResponseEntity<Noleggio>(noleggio, HttpStatus.OK);
+			return new ResponseEntity<Noleggio>(HttpStatus.OK);
 		} catch (Exception e) {
 			logger.info("Errore: " + e);
 			return new ResponseEntity<Noleggio>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -61,7 +58,14 @@ public class NoleggioController {
 	public ResponseEntity<List<Veicolo>> getListDisp() {
 		try {
 			List<Veicolo> listVeicolo = noleggioService.getListDisp();
-			logger.info("Lista veicoli disponibili: \n" + listVeicolo);
+			if (listVeicolo.isEmpty()) {
+				logger.info("Lista veicoli disponibili vuota");
+				return new ResponseEntity<List<Veicolo>>(HttpStatus.OK);
+			}
+			logger.info("Lista veicoli disponibili: ");
+			for (Veicolo veicolo : listVeicolo) {
+				logger.info(veicolo.toString());
+			}
 			return new ResponseEntity<List<Veicolo>>(HttpStatus.OK);
 		} catch (Exception e) {
 			logger.info("Errore: " + e);

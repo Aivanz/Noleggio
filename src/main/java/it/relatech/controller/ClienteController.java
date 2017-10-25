@@ -49,7 +49,7 @@ public class ClienteController {
 		try {
 			Cliente savedCliente = clienteService.updateCliente(cliente);
 			logger.info("Cliente aggiornato: \n" + savedCliente);
-			return new ResponseEntity<Cliente>(savedCliente, HttpStatus.OK);
+			return new ResponseEntity<Cliente>(HttpStatus.OK);
 		} catch (Exception e) {
 			logger.info("Errore: " + e);
 			return new ResponseEntity<Cliente>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -72,7 +72,14 @@ public class ClienteController {
 	public ResponseEntity<List<Cliente>> getListCliente() {
 		try {
 			List<Cliente> listCliente = clienteService.getListCliente();
-			logger.info("Cliente aggiornato: \n" + listCliente);
+			if (listCliente.isEmpty()) {
+				logger.info("Lista clienti vuota");
+				return new ResponseEntity<List<Cliente>>(HttpStatus.OK);
+			}
+			logger.info("Lista clienti: ");
+			for (Cliente cliente : listCliente) {
+				logger.info(cliente.toString());
+			}
 			return new ResponseEntity<List<Cliente>>(HttpStatus.OK);
 		} catch (Exception e) {
 			logger.info("Errore: " + e);

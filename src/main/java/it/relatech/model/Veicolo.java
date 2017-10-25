@@ -10,32 +10,33 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Veicolo {
 
 	@Id
 	@GeneratedValue
 	private int id;
-	
+
 	private String marca;
-	
+
 	private String modello;
-	
+
 	private String targa;
-	
-	@Enumerated(EnumType.ORDINAL)
+
+	@Enumerated(EnumType.STRING)
 	private Alimentazione alimentazione;
-	
-	@Enumerated(EnumType.ORDINAL)
+
+	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
-	
-	@Enumerated(EnumType.ORDINAL)
+
+	@Enumerated(EnumType.STRING)
 	private Colore colore;
-	
-	@OneToMany(mappedBy="veicolo")
+
+	@OneToMany(mappedBy = "veicolo")
 	private List<Noleggio> listNoleggio;
 
-	
 	public Veicolo() {
 		listNoleggio = new ArrayList<>();
 	}
@@ -105,10 +106,55 @@ public class Veicolo {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((alimentazione == null) ? 0 : alimentazione.hashCode());
+		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
+		result = prime * result + ((colore == null) ? 0 : colore.hashCode());
+		result = prime * result + ((marca == null) ? 0 : marca.hashCode());
+		result = prime * result + ((modello == null) ? 0 : modello.hashCode());
+		result = prime * result + ((targa == null) ? 0 : targa.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Veicolo other = (Veicolo) obj;
+		if (alimentazione != other.alimentazione)
+			return false;
+		if (categoria != other.categoria)
+			return false;
+		if (colore != other.colore)
+			return false;
+		if (marca == null) {
+			if (other.marca != null)
+				return false;
+		} else if (!marca.equals(other.marca))
+			return false;
+		if (modello == null) {
+			if (other.modello != null)
+				return false;
+		} else if (!modello.equals(other.modello))
+			return false;
+		if (targa == null) {
+			if (other.targa != null)
+				return false;
+		} else if (!targa.equals(other.targa))
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
 		return "Veicolo [id=" + id + ", marca=" + marca + ", modello=" + modello + ", targa=" + targa
-				+ ", alimentazione=" + alimentazione + ", categoria=" + categoria + ", colore=" + colore
-				+ ", listNoleggio=" + listNoleggio + "]";
+				+ ", alimentazione=" + alimentazione + ", categoria=" + categoria + ", colore=" + colore + "]";
 	}
 
 }

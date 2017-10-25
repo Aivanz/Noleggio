@@ -29,7 +29,6 @@ public class ClienteServiceImpl implements ClienteService {
 		clienteDao.deleteCliente(cliente);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cliente> getListCliente() {
 		return clienteDao.getListClienti();

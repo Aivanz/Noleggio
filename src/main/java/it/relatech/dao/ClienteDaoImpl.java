@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.relatech.model.Cliente;
+import it.relatech.model.Veicolo;
 
 @Repository
 @Transactional
@@ -26,7 +27,14 @@ public class ClienteDaoImpl extends AbstractDao implements ClienteDao {
 
 	@Override
 	public void deleteCliente(Cliente cliente) {
-		delete(cliente);
+		List<Cliente> listClienti = getListClienti();
+		Cliente temp = null;
+		for (Cliente cliente2 : listClienti) {
+			if (cliente.equals(cliente2))
+				temp = cliente2;
+		}
+
+		delete(temp);
 	}
 
 	@Override
