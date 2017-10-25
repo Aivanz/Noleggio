@@ -1,6 +1,7 @@
 package it.relatech.model;
 
 import java.time.LocalDate;
+import it.relatech.serializer.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 @Entity
 public class Noleggio {
 
@@ -17,8 +21,12 @@ public class Noleggio {
 	@GeneratedValue
 	private int id;
 
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate inizioNoleggio;
 
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate fineNoleggio;
 
 	private double costoNoleggio;
