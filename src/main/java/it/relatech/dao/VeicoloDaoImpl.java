@@ -51,8 +51,7 @@ public class VeicoloDaoImpl extends AbstractDao implements VeicoloDao {
 
 	@Override
 	public List<Veicolo> getListByCategoria(Categoria categoria) {
-		return (List<Veicolo>) getSession().createCriteria(Veicolo.class).add(Restrictions.eq("categoria", categoria))
-				.list();
+		return (List<Veicolo>) getSession().createCriteria(Veicolo.class).add(Restrictions.eq("categoria", categoria)).list();
 	}
 
 }

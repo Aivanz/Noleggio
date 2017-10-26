@@ -40,6 +40,7 @@ public class Noleggio {
 	private Veicolo veicolo;
 
 	public Noleggio() {
+		
 	}
 
 	public int getId() {
