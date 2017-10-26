@@ -50,7 +50,10 @@ public class VeicoloController {
 	public ResponseEntity<Veicolo> updateVeicolo(@RequestBody Veicolo veicolo) {
 		try {
 			Veicolo savedVeicolo = veicoloService.updateVeicolo(veicolo);
-			logger.info("Veicolo aggiornato: \n" + veicolo);
+			if (savedVeicolo == null)
+				logger.info("Veicolo da aggiornare non trovato\n" + savedVeicolo);
+			else
+				logger.info("Veicolo aggiornato: \n" + savedVeicolo);
 			return new ResponseEntity<Veicolo>(savedVeicolo, HttpStatus.OK);
 		} catch (Exception e) {
 			logger.info("Errore: " + e);
@@ -61,8 +64,11 @@ public class VeicoloController {
 	@DeleteMapping("/delete")
 	public ResponseEntity<Veicolo> deleteVeicolo(@RequestBody Veicolo veicolo) {
 		try {
-			veicoloService.deleteVeicolo(veicolo);
-			logger.info("Veicolo eliminato: \n" + veicolo);
+			Veicolo tempVeicolo = veicoloService.deleteVeicolo(veicolo);
+			if (tempVeicolo == null)
+				logger.info("Veicolo da eliminare non trovato\n");
+			else
+				logger.info("Veicolo eliminato: \n" + tempVeicolo);
 			return new ResponseEntity<Veicolo>(HttpStatus.OK);
 		} catch (Exception e) {
 			logger.info("Errore: " + e);

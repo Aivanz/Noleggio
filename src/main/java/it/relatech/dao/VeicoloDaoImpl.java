@@ -38,15 +38,18 @@ public class VeicoloDaoImpl extends AbstractDao implements VeicoloDao {
 	}
 
 	@Override
-	public void deleteVeicolo(Veicolo veicolo) {
+	public Veicolo deleteVeicolo(Veicolo veicolo) {
 		List<Veicolo> listVeicoli = getListVeicoli();
 		Veicolo temp = null;
 		for (Veicolo veicolo2 : listVeicoli) {
 			if (veicolo.equals(veicolo2))
 				temp = veicolo2;
 		}
-
-		delete(temp);
+		if(temp == null) return temp;
+		else {
+			delete(temp);
+			return temp;
+		}
 	}
 
 	@Override

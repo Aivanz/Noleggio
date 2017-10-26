@@ -10,7 +10,7 @@ public interface ClienteService {
 
 	Cliente updateCliente(Cliente cliente);
 
-	void deleteCliente(Cliente cliente);
+	Cliente deleteCliente(Cliente cliente);
 
 	List<Cliente> getListCliente();
 }

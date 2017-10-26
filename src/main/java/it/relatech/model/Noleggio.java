@@ -31,11 +31,11 @@ public class Noleggio {
 
 	private double costoNoleggio;
 
-	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "CLIENTE_ID")
 	private Cliente cliente;
 
-	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "VEICOLO_ID")
 	private Veicolo veicolo;
 
