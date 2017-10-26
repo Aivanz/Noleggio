@@ -59,8 +59,11 @@ public class ClienteController {
 	@DeleteMapping("/delete")
 	public ResponseEntity<Cliente> deleteCliente(@RequestBody Cliente cliente) {
 		try {
-			clienteService.deleteCliente(cliente);
-			logger.info("Cliente eliminato: \n" + cliente);
+			Cliente tempCliente = clienteService.deleteCliente(cliente);
+			if (tempCliente == null)
+				logger.info("Cliente da eliminare non trovato\n");
+			else
+				logger.info("Cliente eliminato: \n" + tempCliente);
 			return new ResponseEntity<Cliente>(HttpStatus.OK);
 		} catch (Exception e) {
 			logger.info("Errore: " + e);

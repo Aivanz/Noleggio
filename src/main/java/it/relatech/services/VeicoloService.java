@@ -11,7 +11,7 @@ public interface VeicoloService {
 
 	Veicolo updateVeicolo(Veicolo veicolo);
 
-	void deleteVeicolo(Veicolo veicolo);
+	Veicolo deleteVeicolo(Veicolo veicolo);
 
 	List<Veicolo> getListVeicolo();
 

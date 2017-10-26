@@ -26,7 +26,7 @@ public class ClienteDaoImpl extends AbstractDao implements ClienteDao {
 	}
 
 	@Override
-	public void deleteCliente(Cliente cliente) {
+	public Cliente deleteCliente(Cliente cliente) {
 		List<Cliente> listClienti = getListClienti();
 		Cliente temp = null;
 		for (Cliente cliente2 : listClienti) {
@@ -34,7 +34,12 @@ public class ClienteDaoImpl extends AbstractDao implements ClienteDao {
 				temp = cliente2;
 		}
 
-		delete(temp);
+		if (temp == null)
+			return temp;
+		else {
+			delete(temp);
+			return temp;
+		}
 	}
 
 	@Override

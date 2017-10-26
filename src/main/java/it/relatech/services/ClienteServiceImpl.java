@@ -25,8 +25,8 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
-	public void deleteCliente(Cliente cliente) {
-		clienteDao.deleteCliente(cliente);
+	public Cliente deleteCliente(Cliente cliente) {
+		return clienteDao.deleteCliente(cliente);
 	}
 
 	@Override

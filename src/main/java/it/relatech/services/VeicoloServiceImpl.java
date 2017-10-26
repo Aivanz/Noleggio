@@ -26,8 +26,8 @@ public class VeicoloServiceImpl implements VeicoloService {
 	}
 
 	@Override
-	public void deleteVeicolo(Veicolo veicolo) {
-		veicoloDao.deleteVeicolo(veicolo);
+	public Veicolo deleteVeicolo(Veicolo veicolo) {
+		return veicoloDao.deleteVeicolo(veicolo);
 	}
 
 	@Override

@@ -10,7 +10,7 @@ public interface ClienteDao {
 	
 	Cliente updateCliente (Cliente cliente);
 	
-	void deleteCliente(Cliente cliente);
+	Cliente deleteCliente(Cliente cliente);
 	
 	List<Cliente> getListClienti();
 	

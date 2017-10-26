@@ -9,7 +9,9 @@ public interface NoleggioService {
 
 	Noleggio saveNoleggio(Noleggio noleggio);
 
-	void deleteNoleggio(Noleggio noleggio);
+	Noleggio deleteNoleggio(Noleggio noleggio);
 
 	List<Veicolo> getListDisp();
+
+	List<Noleggio> getListNoleggio();
 }

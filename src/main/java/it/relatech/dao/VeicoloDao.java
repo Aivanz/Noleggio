@@ -11,7 +11,7 @@ public interface VeicoloDao {
 
 	Veicolo updateVeicolo(Veicolo v);
 
-	void deleteVeicolo(Veicolo veicolo);
+	Veicolo deleteVeicolo(Veicolo veicolo);
 
 	List<Veicolo> getListVeicoli();
 
