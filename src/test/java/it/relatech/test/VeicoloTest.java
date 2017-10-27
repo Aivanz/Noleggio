@@ -40,8 +40,7 @@ import it.relatech.model.Veicolo;
 @Transactional
 public class VeicoloTest {
 	
-	 @PersistenceContext
-	 private EntityManager em;
+	
 	 
 	@Autowired
 	private WebApplicationContext ctx;
@@ -80,34 +79,27 @@ public class VeicoloTest {
 				.andDo(print()).andExpect(status().isCreated());
 	}
 	
-//	/**
-//	 * Test for update on db. 
-//	 * 
-//	 * @throws Exception
-//	 */
-//	@SuppressWarnings({"unchecked", "rawtypes" })
-//	@Test
-//	public void testUpdateVeicolo() throws Exception {
-//		
-////		HttpSession session = request.getSession();
-////		Connection dbConnection = null;
-////		Statement statement = null;
-//		
-//		CriteriaBuilder cb = this.em.getCriteriaBuilder();
-//		
-//		// create update
-//        CriteriaUpdate<Veicolo> update = cb.
-//        createCriteriaUpdate(Veicolo.class);
-//        
-//        // set the root class
-//        Root e = update.from(Veicolo.class);
-//        
-//     // set update and where clause
-//        update.set("modello", "Elicottero");
-//        update.where(cb.greaterThanOrEqualTo(e.get("modello"), "boh"));
-//        
-//     // perform update
-//        this.em.createQuery(update).executeUpdate();
-//	}
+	/**
+	 * Test for update on db. 
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void testUpdateVeicolo() throws Exception {
+		
+		Veicolo veicolo = new Veicolo();
+		
+		veicolo.setMarca("Ferrari");
+		veicolo.setModello("TestaRossa");
+		veicolo.setTarga("abc");
+		veicolo.setAlimentazione(Alimentazione.BENZINA);
+		veicolo.setColore(Colore.ROSSO);
+		veicolo.setCategoria(Categoria.SUPERCAR);
+		
+		
+		mockMvc.perform(
+				post("/veicolo/update").content(mapper.writeValueAsString(veicolo)).contentType(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(status().isOk());
+	}
 	
 }
